@@ -147,7 +147,7 @@ function logger(func, logFunc) {
   return (...arg) => {
     const arr = arg.map((el) => JSON.stringify(el));
     // console.log(arr);
-    console.log(`log from ${logFunc.name}:`);
+    // console.log(`log from ${logFunc.name}:`);
     logFunc(`${func.name}(${arr}) starts`);
     const res = func(...arg);
     // console.log(res);
