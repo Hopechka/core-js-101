@@ -105,8 +105,18 @@ function timeSpanToString(startDate, endDate) {
  *    Date.UTC(2016,3,5,18, 0) => Math.PI
  *    Date.UTC(2016,3,5,21, 0) => Math.PI/2
  */
-function angleBetweenClockHands(/* date */) {
-  throw new Error('Not implemented');
+function angleBetweenClockHands(date) {
+  let hour = date.getHours() + date.getTimezoneOffset() / 60;
+  let minutes = new Date(date).getMinutes();
+  if (minutes > 30) { minutes = 60 - minutes; }
+  hour = Math.abs(hour);
+  if (hour > 6 && hour >= 18) {
+    if (hour % 6 > 0) { hour = 6 - (hour % 6); } else { hour /= 3; }
+  } else if (hour > 6 && hour < 18) {
+    if (hour % 6 > 0) { hour %= 6; }
+  }
+
+  return ((hour * 60 - minutes) * Math.PI) / 360;
 }
 
 
