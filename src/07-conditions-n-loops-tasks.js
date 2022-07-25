@@ -290,14 +290,17 @@ function isCreditCardNumber(ccn) {
     if (i % 2 !== 0) {
       const n = +ccnStrReverse[i] * 2;
       if (n > 9) {
-        count += n.toString().split('').reduce((prev, cur) => +prev + +cur, 0);
+        count += n - 9;
+        // count += n.toString().split('').reduce((prev, cur) => +prev + +cur, 0);
       } else { count += n; }
     } else { count += +ccnStrReverse[i]; }
   }
 
-  let lastNumber = +(count.toString().split('').slice(-1));
-  if (lastNumber === 0) { lastNumber = 10; }
-  return +ccnStrReverse[0] === (10 - lastNumber);
+  // let lastNumber = +(count.toString().split('').slice(-1));
+  // if (lastNumber === 0) { lastNumber = 10; }
+  // return +ccnStrReverse[0] === (10 - lastNumber);
+
+  return (count + +ccnStrReverse[0]) % 10 === 0;
 }
 
 

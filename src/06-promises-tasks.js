@@ -107,7 +107,7 @@ function chainPromises(array, action) {
       (i) => { newArr.push(i); },
     ));
     res(newArr);
-  }).then((newArr) => newArr.reduce(action)).catch(() => { });
+  }).then((newArr) => newArr.reduce(action)).catch(() => {});
 }
 
 
